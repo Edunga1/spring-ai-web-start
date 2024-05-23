@@ -20,5 +20,18 @@ services:
         wget -q http://ollama:11434/api/pull --post-data='{"name": "llama3", "stream": true}'
         echo "============ Model pulled."
 
+  server:
+    build: .
+    environment:
+      - SPRING_AI_OLLAMA_BASE_URL=http://ollama:11434
+    ports:
+      - "8080:8080"
+
+  web:
+    image: httpd
+    ports:
+      - "8081:80"
+    volumes:
+      - ./web:/usr/local/apache2/htdocs
 volumes:
   ollama:
