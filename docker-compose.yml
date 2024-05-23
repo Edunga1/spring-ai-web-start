@@ -1,14 +1,24 @@
-version: '3.8'
-
 services:
   ollama:
     image: ollama/ollama
-    container_name: ollama
     ports:
       - "11434:11434"
     volumes:
       - ollama:/root/.ollama
     command: serve
+
+  model-puller:
+    image: busybox
+    depends_on:
+      - ollama
+    command:
+      - sh
+      - -c
+      - |
+        sleep 5
+        echo "============ Pulling model..."
+        wget -q http://ollama:11434/api/pull --post-data='{"name": "llama3", "stream": true}'
+        echo "============ Model pulled."
 
 volumes:
   ollama:
