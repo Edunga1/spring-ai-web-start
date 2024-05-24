@@ -6,23 +6,12 @@ Spring AI 소개 페이지는 https://docs.spring.io/spring-ai/reference/index.h
 
 ## Getting Started
 
-Ollama 시작하기. docker-compose를 작성해 두었으므로 아래 명령어로 실행할 수 있습니다.
-
 ```bash
-$ docker-compose up -d
+$ git clone https://github.com/Edunga1/spring-ai-web-start.git && cd spring-ai-web-start
+$ docker-compose up
 ```
 
-Llama3 모델 다운로드 받기. Llama3는 약 5GB 정도의 용량을 차지하는 인기있는 모델입니다.
+AI 모델을 다운로드 받는데 시간이 걸릴 수 있습니다.
+모두 다운로드 되어 `Model pulled.` 메시지가 확인되면 웹 페이지에서 대화를 시작할 수 있습니다.
 
-```bash
-$ docker exec -it ollama ollama pull llama3
-```
-
-서버 시작 후 모델에 쿼리할 수 있습니다.
-
-```bash
-$ curl http://localhost:8080/chat\?q\=hello
-{"response":"Hello! It's nice to meet you. Is there something I can help you with, or would you like to chat?"}
-```
-
-또는 브라우저에서 http://localhost:8080/chat?q=hello
+http://localhost:8081
